@@ -68,15 +68,17 @@ function createHeader(username: string, userProfileUrl: string, totalLikes: numb
   const heartX = getHeartPosition(totalLikes, WIDTH);
 
   return `
-    <a href="${userProfileUrl}" target="_blank">
-      <g transform="translate(20, 15)">
-        <rect x="-5" y="-5" width="40" height="40" rx="8" fill="url(#accentGradient)" filter="url(#softGlow)" />
-        ${VELOG_LOGO_INLINE}
-      </g>
-      <text x="68" y="37" font-family="${colors.fontPrimary}" font-size="18" font-weight="600" fill="${colors.textColor}">
-        ${username}
-      </text>
-    </a>
+    <g>
+      <a href="${userProfileUrl}" target="_blank">
+        <g transform="translate(20, 15)">
+          <rect x="-5" y="-5" width="40" height="40" rx="8" fill="url(#accentGradient)" filter="url(#softGlow)" />
+          ${VELOG_LOGO_INLINE}
+        </g>
+        <text x="68" y="37" font-family="${colors.fontPrimary}" font-size="18" font-weight="600" fill="${colors.textColor}">
+          ${username}
+        </text>
+      </a>
+    </g>
     
     <g transform="translate(${heartX}, 22)">
       <svg width="18" height="18" viewBox="0 0 24 24">
@@ -132,7 +134,7 @@ function createCustomPosts(items: FeedItem[], colors: ReturnType<typeof getTheme
     <text x="22" y="80" font-family="${colors.fontPrimary}" font-size="16" font-weight="600" fill="url(#accentGradient)">
       ✨ Top Posts
     </text>
-    <line x1="22" y1="85" x2="180" y2="85"  />
+    <line x1="22" y1="85" x2="180" y2="85" stroke="${colors.accentColor}" stroke-width="1.5" stroke-opacity="0.5" />
   `;
 
   items.slice(0, 5).forEach((item, index) => {
@@ -202,6 +204,7 @@ export function generateSVG(username: string, items: FeedItem[], theme: string, 
       ${createBackground(colors, darkMode)}
       ${createHeader(username, userProfileUrl, totalLikes, colors)}
       ${postsContent}
+      ${tagsContent}
     </svg>
   `;
 
