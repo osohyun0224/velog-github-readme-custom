@@ -1,6 +1,6 @@
 import { FeedItem } from '../interfaces/feed-item.interface';
 
-const WIDTH = 480;
+const WIDTH = 440;
 const HEIGHT = 240;
 const VELOG_LOGO_INLINE = `
   <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="30px" height="30px" viewBox="0 0 192 192" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -130,9 +130,9 @@ function createTopLikedPosts(items: FeedItem[], colors: ReturnType<typeof getThe
 function createCustomPosts(items: FeedItem[], colors: ReturnType<typeof getThemeColors>) {
   let content = `
     <text x="22" y="80" font-family="${colors.fontPrimary}" font-size="16" font-weight="600" fill="url(#accentGradient)">
-      ✨ Selected Posts
+      ✨ Top Posts
     </text>
-    <line x1="22" y1="85" x2="180" y2="85" stroke="${colors.accentColor}" stroke-width="1.5" stroke-opacity="0.5" />
+    <line x1="22" y1="85" x2="180" y2="85"  />
   `;
 
   items.slice(0, 5).forEach((item, index) => {
@@ -202,12 +202,6 @@ export function generateSVG(username: string, items: FeedItem[], theme: string, 
       ${createBackground(colors, darkMode)}
       ${createHeader(username, userProfileUrl, totalLikes, colors)}
       ${postsContent}
-      ${tagsContent}
-      
-      <text x="${WIDTH - 115}" y="${svgHeight - 8}" font-family="${colors.fontSecondary}" 
-            font-size="9" fill="${colors.secondaryColor}" text-anchor="start" opacity="0.7">
-        @osohyun0224
-      </text>
     </svg>
   `;
 
